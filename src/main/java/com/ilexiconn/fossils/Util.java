@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.AchievementPage;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class Util
     private static Block[] blocks = new Block[1024];
     private static Item[] items = new Item[1024];
     private static Achievement[] achievements = new Achievement[1024];
+    private static AchievementPage[] achievementPages = new AchievementPage[16];
 
     /** Entity stuff.. Pff... (and model studd for the eggs, and the eggs are for the entities, hmm....) */
     private static ArrayList<Class<? extends Entity>> entityToRender = new ArrayList<Class<? extends Entity>>();
@@ -82,6 +84,12 @@ public class Util
         achievements[id].registerStat();
     }
 
+    public static void addAchievementPage(int id, AchievementPage page)
+    {
+        achievementPages[id] = page;
+        AchievementPage.registerAchievementPage(achievementPages[id]);
+    }
+
     /** GETTERS! :D */
     public static Block getblockById(int id)
     {
@@ -91,6 +99,16 @@ public class Util
     public static Item getItemById(int id)
     {
         return items[id];
+    }
+
+    public static Achievement getAchievement(int id)
+    {
+        return achievements[id];
+    }
+
+    public static AchievementPage getAchievementPage(int id)
+    {
+        return achievementPages[id];
     }
 
     public static Class<? extends Entity> getEntityToRender()
