@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Util
 
     private static Block[] blocks = new Block[1024];
     private static Item[] items = new Item[1024];
+    private static Achievement[] achievements = new Achievement[1024];
 
     /** Entity stuff.. Pff... (and model studd for the eggs, and the eggs are for the entities, hmm....) */
     private static ArrayList<Class<? extends Entity>> entityToRender = new ArrayList<Class<? extends Entity>>();
@@ -72,6 +74,12 @@ public class Util
         tileRenderer.add(renderer);
 
         proxy.renderTileEntity();
+    }
+
+    public static void addAchievement(int id, Achievement achievement)
+    {
+        achievements[id] = achievement;
+        achievements[id].registerStat();
     }
 
     /** GETTERS! :D */
