@@ -26,7 +26,7 @@ public class Util
     private static Achievement[] achievements = new Achievement[1024];
     private static AchievementPage[] achievementPages = new AchievementPage[16];
 
-    /** Entity stuff.. Pff... (and model studd for the eggs, and the eggs are for the entities, hmm....) */
+    /** Entity stuff.. Pff... */
     private static ArrayList<Class<? extends Entity>> entityToRender = new ArrayList<Class<? extends Entity>>();
     private static ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
     private static ArrayList<Class<? extends TileEntity>> tileToRender = new ArrayList<Class<? extends TileEntity>>();
