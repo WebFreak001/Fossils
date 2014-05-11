@@ -1,6 +1,7 @@
 package com.ilexiconn.fossils.proxy;
 
 import com.ilexiconn.fossils.Util;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends ServerProxy
@@ -12,6 +13,6 @@ public class ClientProxy extends ServerProxy
 
     public void renderTileEntity()
     {
-
+        ClientRegistry.bindTileEntitySpecialRenderer(Util.getTileToRender(), Util.getTileRenderer());
     }
 }

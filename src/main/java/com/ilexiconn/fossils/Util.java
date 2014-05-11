@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -21,9 +22,11 @@ public class Util
     private static Block[] blocks = new Block[1024];
     private static Item[] items = new Item[1024];
 
-    /** Entity stuff.. Pff... */
+    /** Entity stuff.. Pff... (and model studd for the eggs, and the eggs are for the entities, hmm....) */
     private static ArrayList<Class<? extends Entity>> entityToRender = new ArrayList<Class<? extends Entity>>();
     private static ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
+    private static ArrayList<Class<? extends TileEntity>> tileToRender = new ArrayList<Class<? extends TileEntity>>();
+    private static ArrayList<TileEntitySpecialRenderer> tileRenderer = new ArrayList<TileEntitySpecialRenderer>();
 
     /** ADDERS! :D */
     public static void addBlock(int id, Block block)
@@ -60,6 +63,17 @@ public class Util
         if (register) GameRegistry.registerTileEntity(tileEntity, blocks[id].getUnlocalizedName() + "_tileEntity");
     }
 
+    public static void addTileEntityRenderer(Class<? extends TileEntity> tileEntity, TileEntitySpecialRenderer renderer)
+    {
+        tileToRender.clear();
+        tileRenderer.clear();
+
+        tileToRender.add(tileEntity);
+        tileRenderer.add(renderer);
+
+        proxy.renderTileEntity();
+    }
+
     /** GETTERS! :D */
     public static Block getblockById(int id)
     {
@@ -79,5 +93,15 @@ public class Util
     public static RenderLiving getEntityRenderer()
     {
         return entityRenderer.get(0);
+    }
+
+    public static Class<? extends TileEntity> getTileToRender()
+    {
+        return tileToRender.get(0);
+    }
+
+    public static TileEntitySpecialRenderer getTileRenderer()
+    {
+        return tileRenderer.get(0);
     }
 }
