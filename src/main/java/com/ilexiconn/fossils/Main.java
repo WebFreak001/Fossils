@@ -12,6 +12,6 @@ public class Main extends Util
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event)
     {
-
+        addEntity(null, "null", null, 0, 0);
     }
 }
