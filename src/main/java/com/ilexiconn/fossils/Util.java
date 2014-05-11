@@ -5,9 +5,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 
@@ -24,13 +26,13 @@ public class Util
     private static ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
 
     /** ADDERS! :D */
-    public void addBlock(int id, Block block)
+    public static void addBlock(int id, Block block)
     {
         blocks[id] = block;
         GameRegistry.registerBlock(blocks[id], blocks[id].getUnlocalizedName());
     }
 
-    public void addItem(int id, Item item)
+    public static void addItem(int id, Item item)
     {
         items[id] = item;
         GameRegistry.registerItem(items[id], items[id].getUnlocalizedName());
@@ -49,6 +51,13 @@ public class Util
         entityRenderer.add(renderer);
 
         proxy.renderEntity();
+    }
+
+    public static void addBlockWithTileEntity(int id, BlockContainer block, Class<? extends TileEntity> tileEntity, boolean register)
+    {
+        blocks[id] = block;
+        GameRegistry.registerBlock(blocks[id], blocks[id].getUnlocalizedName());
+        if (register) GameRegistry.registerTileEntity(tileEntity, blocks[id].getUnlocalizedName() + "_tileEntity");
     }
 
     /** GETTERS! :D */
