@@ -1,4 +1,5 @@
 ![alt tag](http://puu.sh/8IkYG.png)
+=======
 Fossils and Archaeology mod: Jurassic Park Edition
 =======
 A Jurassic Park is a safari amusement dinosaur Minecraft mod. We have recreated Dinosaurs and other extinct animals
