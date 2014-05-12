@@ -8,9 +8,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockCultivateBottom extends BlockContainer
+public class BlockCultivate extends BlockContainer
 {
-    public BlockCultivateBottom()
+    public BlockCultivate()
     {
         super(Material.iron);
         setBlockName("cultivate_bottom");
