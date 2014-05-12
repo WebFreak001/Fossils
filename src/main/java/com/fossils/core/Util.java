@@ -1,6 +1,6 @@
-package com.ilexiconn.fossils;
+package com.fossils.core;
 
-import com.ilexiconn.fossils.proxy.ServerProxy;
+import com.fossils.core.proxy.ServerProxy;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Util
 {
-    @SidedProxy(clientSide = "com.ilexiconn.fossils.proxy.ClientProxy", serverSide = "com.ilexiconn.fossils.proxy.ServerProxy")
+    @SidedProxy(clientSide = "com.fossils.core.proxy.ClientProxy", serverSide = "com.fossils.core.proxy.ServerProxy")
     public static ServerProxy proxy;
 
     private static Block[] blocks = new Block[1024];
@@ -31,6 +31,23 @@ public class Util
     private static ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
     private static ArrayList<Class<? extends TileEntity>> tileToRender = new ArrayList<Class<? extends TileEntity>>();
     private static ArrayList<TileEntitySpecialRenderer> tileRenderer = new ArrayList<TileEntitySpecialRenderer>();
+
+    /** ISideMod stuff */
+    private static ArrayList<ISideMod> sideMods = new ArrayList<ISideMod>();
+
+    public static void addSideMod(ISideMod mod)
+    {
+        sideMods.add(mod);
+    }
+
+    public static void initMods()
+    {
+        for (ISideMod mod : sideMods)
+        {
+            System.out.println("Loading " + mod.coderName() + "'s part of the mod...");
+            mod.init();
+        }
+    }
 
     /** ADDERS! :D */
     public static void addBlock(int id, Block block)
@@ -49,7 +66,7 @@ public class Util
     {
         int entityID = EntityRegistry.findGlobalUniqueEntityId();
         EntityRegistry.registerGlobalEntityID(entityClass, name, entityID, primaryColor, secondaryColor);
-        EntityRegistry.registerModEntity(entityClass, name, entityID, Main.instance, 64, 1, true);
+        EntityRegistry.registerModEntity(entityClass, name, entityID, Core.instance, 64, 1, true);
 
         entityToRender.clear();
         entityRenderer.clear();

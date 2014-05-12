@@ -1,4 +1,4 @@
-package com.ilexiconn.fossils.proxy;
+package com.fossils.core.proxy;
 
 public class ServerProxy
 {

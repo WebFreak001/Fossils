@@ -1,6 +1,6 @@
-package com.ilexiconn.fossils.proxy;
+package com.fossils.core.proxy;
 
-import com.ilexiconn.fossils.Util;
+import com.fossils.core.Util;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
