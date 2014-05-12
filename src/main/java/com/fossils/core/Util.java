@@ -148,4 +148,9 @@ public class Util
     {
         return tileRenderer.get(0);
     }
+
+    public static String getModID()
+    {
+        return "fossils:";
+    }
 }

@@ -1,4 +1,4 @@
-package com.fossils.core;
+package com.fossils;
 
 import com.fossils.ilexiconn.Main;
 

@@ -1,5 +1,6 @@
 package com.fossils.core;
 
+import com.fossils.SideMods;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
