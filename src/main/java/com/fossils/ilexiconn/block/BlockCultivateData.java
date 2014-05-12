@@ -1,5 +1,6 @@
 package com.fossils.ilexiconn.block;
 
+import com.fossils.core.Util;
 import com.fossils.ilexiconn.block.tileentity.TileCultivateData;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -8,7 +9,7 @@ import net.minecraft.world.World;
 
 public class BlockCultivateData extends BlockContainer
 {
-    public boolean isActive;
+    private boolean isActive;
 
     public BlockCultivateData(boolean active)
     {
@@ -35,5 +36,38 @@ public class BlockCultivateData extends BlockContainer
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    public boolean isActive()
+    {
+        return this.isActive;
+    }
+
+    public void setActive(boolean active)
+    {
+        isActive = active;
+    }
+
+    public void updateBlockState(boolean active, World world, int x, int y, int z)
+    {
+        int l = world.getBlockMetadata(x, y, z);
+        TileEntity tileentity = world.getTileEntity(x, y, z);
+
+        if (active)
+        {
+            world.setBlock(x, y, z, Util.getblockById(0));
+        }
+        else
+        {
+            world.setBlock(x, y, z, Util.getblockById(1));
+        }
+
+        world.setBlockMetadataWithNotify(x, y, z, l, 2);
+
+        if (tileentity != null)
+        {
+            tileentity.validate();
+            world.setTileEntity(x, y, z, tileentity);
+        }
     }
 }
