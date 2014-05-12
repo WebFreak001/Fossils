@@ -8,6 +8,11 @@ import net.minecraft.item.ItemStack;
 
 public class TileCultivateData extends TileCultivate implements IInventory
 {
+    public void updateEntity()
+    {
+
+    }
+
     public boolean isActive()
     {
         Block block = worldObj.getBlock(xCoord, yCoord, zCoord);

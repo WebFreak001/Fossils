@@ -4,6 +4,7 @@ import com.fossils.core.Util;
 import com.fossils.ilexiconn.block.tileentity.TileCultivateData;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -17,7 +18,7 @@ public class BlockCultivateData extends BlockContainer
         isActive = active;
         setBlockName("cultivate_top_" + (active ? "active" : "idle"));
         setBlockTextureName(Util.getModID() + "cultivate");
-        setBlockBounds(0f, -1f, 0f, 1f, 2f, 1f);
+        setBlockBounds(0f, -1f, 0f, 1f, 1f, 1f);
     }
 
     public TileEntity createNewTileEntity(World world, int position)
@@ -45,11 +46,6 @@ public class BlockCultivateData extends BlockContainer
         return this.isActive;
     }
 
-    public void setActive(boolean active)
-    {
-        isActive = active;
-    }
-
     public void updateBlockState(boolean active, World world, int x, int y, int z)
     {
         int l = world.getBlockMetadata(x, y, z);
@@ -71,5 +67,10 @@ public class BlockCultivateData extends BlockContainer
             tileentity.validate();
             world.setTileEntity(x, y, z, tileentity);
         }
+    }
+
+    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z)
+    {
+        return world.setBlockToAir(x, y, z) && world.setBlockToAir(x, y - 1, z);
     }
 }
