@@ -29,11 +29,6 @@ public class BlockCultivateBottom extends BlockContainer
         return false;
     }
 
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
     public int getRenderType()
     {
         return -1;
