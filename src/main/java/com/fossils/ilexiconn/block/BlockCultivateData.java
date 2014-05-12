@@ -16,6 +16,8 @@ public class BlockCultivateData extends BlockContainer
         super(Material.iron);
         isActive = active;
         setBlockName("cultivate_top_" + (active ? "active" : "idle"));
+        setBlockTextureName(Util.getModID() + "cultivate");
+        setBlockBounds(0f, -1f, 0f, 1f, 2f, 1f);
     }
 
     public TileEntity createNewTileEntity(World world, int position)
@@ -55,11 +57,11 @@ public class BlockCultivateData extends BlockContainer
 
         if (active)
         {
-            world.setBlock(x, y, z, Util.getblockById(0));
+            world.setBlock(x, y, z, Util.getblockById(1));
         }
         else
         {
-            world.setBlock(x, y, z, Util.getblockById(1));
+            world.setBlock(x, y, z, Util.getblockById(2));
         }
 
         world.setBlockMetadataWithNotify(x, y, z, l, 2);

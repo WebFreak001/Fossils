@@ -18,13 +18,13 @@ public class Main extends Util implements ISideMod
 
     public void init(FMLPreInitializationEvent event)
     {
-        { /** Cultivate bottom (Rendered part) */
+        { /** Cultivate bottom */
             addBlockWithTileEntity(0, new BlockCultivate(), TileCultivate.class, true);
-            addTileEntityRenderer(TileCultivate.class, new CultivateRenderer());
         }
-        { /** Cultivate top (data storage) */
+        { /** Cultivate top */
             addBlockWithTileEntity(1, new BlockCultivateData(true), TileCultivateData.class, true);
             addBlockWithTileEntity(2, new BlockCultivateData(false), TileCultivateData.class, false);
+            addTileEntityRenderer(TileCultivateData.class, new CultivateRenderer());
         }
     }
 }

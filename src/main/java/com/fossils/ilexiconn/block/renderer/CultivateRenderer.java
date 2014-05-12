@@ -1,8 +1,7 @@
 package com.fossils.ilexiconn.block.renderer;
 
 import com.fossils.core.Util;
-import com.fossils.ilexiconn.block.BlockCultivateData;
-import com.fossils.ilexiconn.block.tileentity.TileCultivate;
+import com.fossils.ilexiconn.block.tileentity.TileCultivateData;
 import com.fossils.models.blocks.ModelCultivate;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -15,12 +14,11 @@ public class CultivateRenderer extends TileEntitySpecialRenderer
     public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float scale)
     {
         glPushMatrix();
-        glTranslatef((float) x + 0.5f, (float) y + 1.5f, (float) z + 0.5f);
+        glTranslatef((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f);
 
-        TileCultivate tileCultivate = (TileCultivate) entity;
-        BlockCultivateData blockCultivate = (BlockCultivateData) tileCultivate.getBlock();
+        TileCultivateData tileCultivate = (TileCultivateData) entity;
 
-        bindTexture(new ResourceLocation(Util.getModID() + "textures/blocks/cultivate_" + (blockCultivate.isActive() ? "active" : "idle") + ".png"));
+        bindTexture(new ResourceLocation(Util.getModID() + "textures/blocks/cultivate_" + (tileCultivate.isActive() ? "active" : "idle") + ".png"));
 
         glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
         new ModelCultivate().render();
