@@ -24,6 +24,7 @@ public class Main extends Util implements ISideMod
         }
         { /** Cultivate top (data storage) */
             addBlockWithTileEntity(1, new BlockCultivateData(true), TileCultivateData.class, true);
+            addBlockWithTileEntity(2, new BlockCultivateData(false), TileCultivateData.class, false);
         }
     }
 }

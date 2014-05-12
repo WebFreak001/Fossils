@@ -14,6 +14,7 @@ public class BlockCultivateData extends BlockContainer
     {
         super(Material.iron);
         isActive = active;
+        setBlockName("cultivate_top_" + (active ? "active" : "idle"));
     }
 
     public TileEntity createNewTileEntity(World world, int position)
