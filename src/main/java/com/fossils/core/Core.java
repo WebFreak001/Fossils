@@ -13,6 +13,6 @@ public class Core
     public void init(FMLPreInitializationEvent event)
     {
         SideMods.load();
-        Util.initMods();
+        Util.initMods(event);
     }
 }

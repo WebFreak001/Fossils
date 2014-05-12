@@ -2,6 +2,7 @@ package com.fossils.core;
 
 import com.fossils.core.proxy.ServerProxy;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -40,12 +41,12 @@ public class Util
         sideMods.add(mod);
     }
 
-    public static void initMods()
+    public static void initMods(FMLPreInitializationEvent event)
     {
         for (ISideMod mod : sideMods)
         {
-            System.out.println("Loading " + mod.coderName() + "'s part of the mod...");
-            mod.init();
+            System.out.println("Loading " + mod.getCoder() + "'s part of the mod...");
+            mod.init(event);
         }
     }
 
