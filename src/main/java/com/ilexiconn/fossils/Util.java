@@ -21,34 +21,35 @@ public class Util
     public static ServerProxy proxy;
 
     /** Stuff */
-    public ArrayList<CreativeTabs> tabs = new ArrayList<CreativeTabs>();
-    public ArrayList<Block> blocks = new ArrayList<Block>();
-    public ArrayList<Item> items = new ArrayList<Item>();
-    public ArrayList<Class<? extends TileEntity>> tileEntities = new ArrayList<Class<? extends TileEntity>>();
+    private static CreativeTabs[] tabs = new CreativeTabs[512];
+    private static Block[] blocks = new Block[512];
+    private static Item[] items = new Item[512];
 
     /** Render Stuff */
-    public ArrayList<Class<? extends TileEntity>> tileEntityToRender = new ArrayList<Class<? extends TileEntity>>();
-    public ArrayList<TileEntitySpecialRenderer> tileEntityRenderer = new ArrayList<TileEntitySpecialRenderer>();
-    public ArrayList<Class<? extends EntityLiving>> entityToRender = new ArrayList<Class<? extends EntityLiving>>();
-    public ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
+    private static ArrayList<Class<? extends TileEntity>> tileEntityToRender = new ArrayList<Class<? extends TileEntity>>();
+    private static ArrayList<TileEntitySpecialRenderer> tileEntityRenderer = new ArrayList<TileEntitySpecialRenderer>();
+    private static ArrayList<Class<? extends EntityLiving>> entityToRender = new ArrayList<Class<? extends EntityLiving>>();
+    private static ArrayList<RenderLiving> entityRenderer = new ArrayList<RenderLiving>();
 
     /** Adders */
-    public void addCreativeTab(CreativeTabs tab, boolean doRegister)
+    public void addCreativeTab(int id, CreativeTabs tab)
     {
-        if (doRegister) tabs.add(tab);
+        if (id != -1) tabs[id] = tab;
     }
-    public void addBlock(Block block, boolean doRegister)
+    public void addBlock(int id, Block block)
     {
-        if (doRegister) blocks.add(block);
+        if (id != -1) blocks[id] = block;
+        GameRegistry.registerBlock(block, block.getClass().getSimpleName());
     }
-    public void addItem(Item item, boolean doRegister)
+    public void addItem(int id, Item item)
     {
-        if (doRegister) items.add(item);
+        if (id != -1) items[id] = item;
+        GameRegistry.registerItem(item, item.getClass().getSimpleName());
     }
-    public void addBlockWithTileEntity(BlockContainer block, Class<? extends TileEntity> tileEntity, boolean doRegister,  boolean doRegisterTile)
+    public void addBlockWithTileEntity(int id, BlockContainer block, Class<? extends TileEntity> tileEntity, boolean doRegister)
     {
-        addBlock(block, doRegister);
-        if (doRegisterTile) GameRegistry.registerTileEntity(tileEntity, tileEntity.getSimpleName());
+        addBlock(id, block);
+        if (doRegister) GameRegistry.registerTileEntity(tileEntity, tileEntity.getSimpleName());
     }
     public void addTileEntityRenderer(Class<? extends TileEntity> tileEntity, TileEntitySpecialRenderer renderer)
     {
@@ -73,39 +74,35 @@ public class Util
     }
 
     /** Getters */
-    public CreativeTabs getCreativeTab(int id)
+    public static CreativeTabs getCreativeTab(int id)
     {
-        return tabs.get(id);
+        return tabs[id];
     }
-    public Block getBlock(int id)
+    public static Block getBlock(int id)
     {
-        return blocks.get(id);
+        return blocks[id];
     }
-    public Item getItem(int id)
+    public static Item getItem(int id)
     {
-        return items.get(id);
+        return items[id];
     }
-    public Class<? extends TileEntity> getTileEntity(int id)
-    {
-        return tileEntities.get(id);
-    }
-    public Class<? extends TileEntity> getTileEntityToRender()
+    public static Class<? extends TileEntity> getTileEntityToRender()
     {
         return tileEntityToRender.get(0);
     }
-    public TileEntitySpecialRenderer getTileEntityRenderer()
+    public static TileEntitySpecialRenderer getTileEntityRenderer()
     {
         return tileEntityRenderer.get(0);
     }
-    public Class<? extends EntityLiving> getEntityToRender()
+    public static Class<? extends EntityLiving> getEntityToRender()
     {
         return entityToRender.get(0);
     }
-    public RenderLiving getEntityRenderer()
+    public static RenderLiving getEntityRenderer()
     {
         return entityRenderer.get(0);
     }
-    public String getModId()
+    public static String getModId()
     {
         return "fossils:";
     }

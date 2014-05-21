@@ -1,6 +1,7 @@
 package com.ilexiconn.fossils.data.block;
 
 import com.ilexiconn.fossils.Fossils;
+import com.ilexiconn.fossils.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,8 +17,9 @@ public class GhostBlock extends Block
     {
         super(Material.cloth);
         setBlockName(name);
-        setBlockTextureName(Fossils.instance.getModId() + name);
+        setBlockTextureName(Util.getModId() + name);
         blocksToBreak = blocks;
+        setCreativeTab(null);
     }
 
     public GhostBlock(String name, int[] blocks, int guiBlock, int guiID)
