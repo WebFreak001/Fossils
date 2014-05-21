@@ -5,6 +5,7 @@ import com.ilexiconn.fossils.data.block.GhostBlock;
 import com.ilexiconn.fossils.data.item.ItemCultivate;
 import com.ilexiconn.fossils.data.tile.TileCultivate;
 import com.ilexiconn.fossils.network.client.render.RenderCultivate;
+import com.ilexiconn.fossils.network.client.gui.GuiHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,6 +42,9 @@ public class Fossils extends Util
         }
         { /** Renderers */
             addTileEntityRenderer(TileCultivate.class, new RenderCultivate());
+        }
+        { /** Other stuff */
+            addGuiHandler(new GuiHandler());
         }
     }
 }

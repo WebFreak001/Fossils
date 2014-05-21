@@ -1,10 +1,12 @@
 package com.ilexiconn.fossils.data.block;
 
+import com.ilexiconn.fossils.Fossils;
 import com.ilexiconn.fossils.Util;
 import com.ilexiconn.fossils.data.tile.TileCultivate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -34,5 +36,11 @@ public class BlockCultivate extends BlockContainer
     {
         super.breakBlock(world, x, y ,z, block, side);
         world.setBlockToAir(x, y + 1, z);
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int o, float i, float d, float k)
+    {
+        player.openGui(Fossils.instance, o, world, x, y, z);
+        return true;
     }
 }

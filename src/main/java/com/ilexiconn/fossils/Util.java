@@ -2,6 +2,8 @@ package com.ilexiconn.fossils;
 
 import com.ilexiconn.fossils.network.ServerProxy;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -71,6 +73,10 @@ public class Util
         entityRenderer.add(renderer);
 
         proxy.renderEntity();
+    }
+    public void addGuiHandler(IGuiHandler handler)
+    {
+        NetworkRegistry.INSTANCE.registerGuiHandler(Fossils.instance, handler);
     }
 
     /** Getters */
