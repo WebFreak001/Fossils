@@ -2,6 +2,7 @@ package com.ilexiconn.fossils.data.block;
 
 import com.ilexiconn.fossils.Util;
 import com.ilexiconn.fossils.data.tile.TileCultivate;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -15,7 +16,8 @@ public class BlockCultivate extends BlockContainer
         setBlockName("cultivate");
         setBlockTextureName(Util.getModId() + "cultivate");
         setHardness(1.5f);
-        setCreativeTab(Util.getCreativeTab(0));
+        setCreativeTab(null);
+        setBlockBounds(0f, 0f, 0f, 1f, 2f, 1f);
     }
 
     public TileEntity createNewTileEntity(World var1, int var2)
@@ -26,5 +28,11 @@ public class BlockCultivate extends BlockContainer
     public int getRenderType()
     {
         return -1;
+    }
+
+    public void breakBlock(World world, int x, int y, int z, Block block, int side)
+    {
+        super.breakBlock(world, x, y ,z, block, side);
+        world.setBlockToAir(x, y + 1, z);
     }
 }
