@@ -1,6 +1,7 @@
 package com.ilexiconn.fossils;
 
 import com.ilexiconn.fossils.data.block.BlockCultivate;
+import com.ilexiconn.fossils.data.block.GhostBlock;
 import com.ilexiconn.fossils.data.tile.TileCultivate;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -27,7 +28,8 @@ public class Fossils extends Util
             }, true);
         }
         { /** Blocks */
-            addBlockWithTileEntity(new BlockCultivate(), TileCultivate.class, true, true);
+            addBlockWithTileEntity(new BlockCultivate(), TileCultivate.class, true, true); //cultivateBottom
+            addBlock(new GhostBlock("cultivate_ghost", new int[] {-1}, -1, 0), true); //cultivateTop
         }
         { /** Items */
 

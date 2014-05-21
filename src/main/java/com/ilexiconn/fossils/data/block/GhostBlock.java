@@ -9,7 +9,8 @@ import net.minecraft.world.World;
 public class GhostBlock extends Block
 {
     public int[] blocksToBreak;
-    public int guiToOpen, guiID;
+    public int guiToOpen, guiId;
+    public boolean openGui;
 
     public GhostBlock(String name, int[] blocks)
     {
@@ -23,7 +24,8 @@ public class GhostBlock extends Block
     {
         this(name, blocks);
         guiToOpen = guiBlock;
-        this.guiID = guiID;
+        guiId = guiID;
+        openGui = true;
     }
 
     public GhostBlock(String name, int[] blocks, float x, float y, float z, float x1, float y1, float z1)
@@ -63,8 +65,8 @@ public class GhostBlock extends Block
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int o, float i, float d, float k)
     {
-        if (guiToOpen == 0) return false;
-        player.openGui(Fossils.instance, guiID, world, x, y, z);
+        if (!openGui) return false;
+        player.openGui(Fossils.instance, guiId, world, x, y + guiToOpen, z);
         return true;
     }
 }
