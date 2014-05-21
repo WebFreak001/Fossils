@@ -45,7 +45,7 @@ public class Util
     {
         if (doRegister) items.add(item);
     }
-    public void addBlockWithTileEntity(BlockContainer block, boolean doRegister, Class<? extends TileEntity> tileEntity, boolean doRegisterTile)
+    public void addBlockWithTileEntity(BlockContainer block, Class<? extends TileEntity> tileEntity, boolean doRegister,  boolean doRegisterTile)
     {
         addBlock(block, doRegister);
         if (doRegisterTile) GameRegistry.registerTileEntity(tileEntity, tileEntity.getSimpleName());
@@ -104,5 +104,9 @@ public class Util
     public RenderLiving getEntityRenderer()
     {
         return entityRenderer.get(0);
+    }
+    public String getModId()
+    {
+        return "fossils:";
     }
 }

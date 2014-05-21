@@ -1,0 +1,70 @@
+package com.ilexiconn.fossils.data.block;
+
+import com.ilexiconn.fossils.Fossils;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
+public class GhostBlock extends Block
+{
+    public int[] blocksToBreak;
+    public int guiToOpen, guiID;
+
+    public GhostBlock(String name, int[] blocks)
+    {
+        super(Material.cloth);
+        setBlockName(name);
+        setBlockTextureName(Fossils.instance.getModId() + name);
+        blocksToBreak = blocks;
+    }
+
+    public GhostBlock(String name, int[] blocks, int guiBlock, int guiID)
+    {
+        this(name, blocks);
+        guiToOpen = guiBlock;
+        this.guiID = guiID;
+    }
+
+    public GhostBlock(String name, int[] blocks, float x, float y, float z, float x1, float y1, float z1)
+    {
+        this(name, blocks);
+        setBlockBounds(x, y, z, x1, y1, z1);
+    }
+
+    public GhostBlock(String name, int[] blocks, int guiBlock, int guiID, float x, float y, float z, float x1, float y1, float z1)
+    {
+        this(name, blocks, guiBlock, guiID);
+        setBlockBounds(x, y, z, x1, y1, z1);
+    }
+
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    public void breakBlock(World world, int x, int y, int z, Block block, int side)
+    {
+        for (int thing : blocksToBreak)
+        {
+            world.setBlockToAir(x, y + thing, z);
+        }
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int o, float i, float d, float k)
+    {
+        if (guiToOpen == 0) return false;
+        player.openGui(Fossils.instance, guiID, world, x, y, z);
+        return true;
+    }
+}
