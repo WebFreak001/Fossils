@@ -1,5 +1,6 @@
 package com.ilexiconn.fossils.data.block;
 
+import com.ilexiconn.fossils.Fossils;
 import com.ilexiconn.fossils.Util;
 import com.ilexiconn.fossils.data.tile.TileAnalyzer;
 import cpw.mods.fml.relauncher.Side;
@@ -98,11 +99,7 @@ public class BlockAnalyzer extends BlockContainer
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float i, float d, float k)
     {
-        if (!world.isRemote)
-        {
-            BlockAnalyzer.updateBlockState(!BlockAnalyzer.getActive(world, x, y, z), world, x, y, z);
-            return true;
-        }
-        return false;
+        player.openGui(Fossils.instance, 1, world, x, y, z);
+        return true;
     }
 }

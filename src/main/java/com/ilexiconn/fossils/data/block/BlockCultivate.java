@@ -40,7 +40,7 @@ public class BlockCultivate extends BlockContainer
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int o, float i, float d, float k)
     {
-        player.openGui(Fossils.instance, o, world, x, y, z);
+        player.openGui(Fossils.instance, 0, world, x, y, z);
         return true;
     }
 }
