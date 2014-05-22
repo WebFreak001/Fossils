@@ -41,12 +41,12 @@ public class Util
     public void addBlock(int id, Block block)
     {
         if (id != -1) blocks[id] = block;
-        GameRegistry.registerBlock(block, block.getClass().getSimpleName());
+        GameRegistry.registerBlock(block, block.getUnlocalizedName());
     }
     public void addItem(int id, Item item)
     {
         if (id != -1) items[id] = item;
-        GameRegistry.registerItem(item, item.getClass().getSimpleName());
+        GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
     public void addBlockWithTileEntity(int id, BlockContainer block, Class<? extends TileEntity> tileEntity, boolean doRegister)
     {

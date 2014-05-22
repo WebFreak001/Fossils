@@ -1,11 +1,13 @@
 package com.ilexiconn.fossils;
 
+import com.ilexiconn.fossils.data.block.BlockAnalyzer;
 import com.ilexiconn.fossils.data.block.BlockCultivate;
 import com.ilexiconn.fossils.data.block.GhostBlock;
 import com.ilexiconn.fossils.data.item.ItemCultivate;
+import com.ilexiconn.fossils.data.tile.TileAnalyzer;
 import com.ilexiconn.fossils.data.tile.TileCultivate;
-import com.ilexiconn.fossils.network.client.render.RenderCultivate;
 import com.ilexiconn.fossils.network.client.gui.GuiHandler;
+import com.ilexiconn.fossils.network.client.render.RenderCultivate;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,8 +33,10 @@ public class Fossils extends Util
             });
         }
         { /** Blocks */
-            addBlockWithTileEntity(0, new BlockCultivate(), TileCultivate.class, true); //cultivateBottom
-            addBlock(1, new GhostBlock("cultivate_ghost", new int[] {-1}, -1, 0, 0f, -1f, 0f, 1f, 1f, 1f)); //cultivateTop
+            addBlockWithTileEntity(0, new BlockCultivate(), TileCultivate.class, true); //cultivate
+            addBlock(1, new GhostBlock("cultivate_ghost", new int[]{-1}, -1, 0, 0f, -1f, 0f, 1f, 1f, 1f)); //cultivate_ghost
+            addBlockWithTileEntity(2, new BlockAnalyzer(true), TileAnalyzer.class, true); //analyzer_active
+            addBlockWithTileEntity(3, new BlockAnalyzer(false), TileAnalyzer.class, false); //analyzer_idle
         }
         { /** Items */
             addItem(0, new ItemCultivate());
